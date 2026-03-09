@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+
+<properties>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  BASE DE DONNÉES PostgreSQL                  -->
+    <!-- ═══════════════════════════════════════════ -->
+    <entry key='database.driver'>org.postgresql.Driver</entry>
+    <entry key='database.url'>jdbc:postgresql://postgres:5432/sylitrack</entry>
+    <entry key='database.user'>sylitrack</entry>
+    <entry key='database.password'>${POSTGRES_PASSWORD}</entry>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  SERVEUR WEB                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <entry key='web.enable'>true</entry>
+    <entry key='web.port'>8082</entry>
+    <entry key='web.path'>/opt/traccar/web</entry>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  SÉCURITÉ                                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <entry key='server.registration'>false</entry>  <!-- Désactiver inscriptions publiques -->
+    <entry key='server.geocoder.enable'>true</entry>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  PROTOCOLES GPS COURANTS EN GUINÉE/AFRIQUE  -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <!-- Teltonika FMB (très répandu en Afrique) -->
+    <entry key='teltonika.port'>5001</entry>
+
+    <!-- Concox / JimiIot GT06 (boîtiers chinois courants) -->
+    <entry key='gt06.port'>5013</entry>
+
+    <!-- OsmAnd — application smartphone -->
+    <entry key='osmand.port'>5055</entry>
+
+    <!-- Wialon IPS -->
+    <entry key='wialon.port'>5027</entry>
+
+    <!-- Queclink (GV300, GV500 utilisés dans les mines) -->
+    <entry key='gl200.port'>5004</entry>
+
+    <!-- Meitrack -->
+    <entry key='meitrack.port'>5020</entry>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  WEBHOOK → DJANGO (Anti-collision temps réel)-->
+    <!-- ═══════════════════════════════════════════ -->
+    <entry key='event.forward.enable'>true</entry>
+    <entry key='event.forward.url'>http://django:8000/api/traccar/webhook/</entry>
+    <entry key='event.forward.header'>Authorization: Bearer ${WEBHOOK_SECRET}</entry>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  FILTRAGE GPS (évite les faux mouvements)   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <entry key='filter.enable'>true</entry>
+    <entry key='filter.invalid'>true</entry>
+    <entry key='filter.zero'>true</entry>
+    <entry key='filter.duplicate'>true</entry>
+    <entry key='filter.distance'>10</entry>         <!-- Ignorer si < 10m de déplacement -->
+    <entry key='filter.maxSpeed'>120</entry>        <!-- Ignorer si > 120 km/h (camion mine) -->
+    <entry key='filter.accuracy'>50</entry>         <!-- Précision GPS minimale en mètres -->
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!--  PERFORMANCES                               -->
+    <!-- ═══════════════════════════════════════════ -->
+    <entry key='database.positionsHistoryDays'>90</entry>  <!-- 90 jours d'historique -->
+
+</properties>

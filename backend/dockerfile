@@ -1,0 +1,25 @@
+FROM python:3.11-slim
+
+# Dépendances système pour GeoDjango + PostGIS
+RUN apt-get update && apt-get install -y \
+    gdal-bin \
+    libgdal-dev \
+    libgeos-dev \
+    libproj-dev \
+    binutils \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Dépendances Python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Collecter les fichiers statiques
+RUN python manage.py collectstatic --noinput || true
+
+EXPOSE 8000
+
+CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "sylitrack.asgi:application"]

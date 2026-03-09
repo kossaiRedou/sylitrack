@@ -1,0 +1,31 @@
+# ─── Django Core ─────────────────────────────────
+Django==4.2.9
+daphne==4.0.0               # Serveur ASGI pour WebSocket
+
+# ─── Base de données ─────────────────────────────
+psycopg2-binary==2.9.9      # PostgreSQL driver
+django-environ==0.11.2      # Gestion variables .env
+
+# ─── Géospatial (Anti-collision) ─────────────────
+GDAL==3.6.4
+# GeoDjango est inclus dans Django (django.contrib.gis)
+
+# ─── Temps réel WebSocket ─────────────────────────
+channels==4.0.0
+channels-redis==4.1.0
+
+# ─── API REST ────────────────────────────────────
+djangorestframework==3.14.0
+djangorestframework-gis==1.0
+
+# ─── Traccar API Client ───────────────────────────
+requests==2.31.0
+
+# ─── Celery (tâches async : rapports, alertes) ───
+celery==5.3.6
+redis==5.0.1
+
+# ─── Utilitaires ─────────────────────────────────
+Pillow==10.2.0              # Images
+openpyxl==3.1.2             # Export Excel rapports
+reportlab==4.1.0            # Export PDF rapports
